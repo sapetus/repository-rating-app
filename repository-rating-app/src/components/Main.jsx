@@ -2,9 +2,9 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Route, Switch, Redirect } from 'react-router-native';
 
-import RepositoryList from './RepositoryList';
-import AppBar from './AppBar';
-import SignIn from './SignIn';
+import RepositoryList from './RepositoryList/index';
+import AppBar from './AppBar/index';
+import SignIn from './LoginForm/index';
 
 const styles = StyleSheet.create({
   container: {

@@ -13,7 +13,7 @@ const styles = {
 
 const RepositoryStatistics = ({ value, stat }) => {
   return (
-    <View style={styles.statItem}>
+    <View testID={stat} style={styles.statItem}>
       <Text fontSize="subheading" fontWeight="bold">
         {value > 1000 ? (value / 1000).toFixed(1) + "k" : value}
       </Text>

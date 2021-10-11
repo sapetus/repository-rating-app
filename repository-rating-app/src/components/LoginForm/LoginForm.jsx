@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
 const LoginForm = ({ onSubmit, dirty, isValid }) => {
   return (
     <View style={styles.container}>
-      <FormikTextInput name="username" placeholder="Username" isSecret={false} />
-      <FormikTextInput name="password" placeholder="Password" isSecret={true} />
-      <Pressable onPress={onSubmit} style={styles.button} disabled={!dirty && isValid}>
+      <FormikTextInput testID="usernameField" name="username" placeholder="Username" isSecret={false} />
+      <FormikTextInput testID="passwordField" name="password" placeholder="Password" isSecret={true} />
+      <Pressable testID="submitButton" onPress={onSubmit} style={styles.button} disabled={!dirty && isValid}>
         <Text color="textTertiary" fontSize="subheading" fontWeight="bold">
           Sign In
         </Text>

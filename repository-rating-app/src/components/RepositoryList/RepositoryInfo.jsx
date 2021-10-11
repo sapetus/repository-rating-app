@@ -28,13 +28,13 @@ const styles = {
 const RepositoryInfo = ({ name, description, language }) => {
   return (
     <View style={styles.infoContainer}>
-      <Text style={styles.infoItem} fontSize="subheading" fontWeight="bold">
+      <Text testID="repositoryName" style={styles.infoItem} fontSize="subheading" fontWeight="bold">
         {name}
       </Text>
-      <Text style={styles.infoItem} color="textSecondary">
+      <Text testID="repositoryDescription" style={styles.infoItem} color="textSecondary">
         {description}
       </Text>
-      <Text style={styles.itemLanguage} color="textTertiary">
+      <Text testID="repositoryLanguage" style={styles.itemLanguage} color="textTertiary">
         {language}
       </Text>
     </View>

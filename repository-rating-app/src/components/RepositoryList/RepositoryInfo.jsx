@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
 import Text from '../Text';
 import theme from '../../theme';
@@ -17,11 +17,12 @@ const styles = {
     marginBottom: 8
   },
   itemLanguage: {
+    display: "flex",
+    flexDirection: "row",
     marginBottom: 5,
     backgroundColor: theme.colors.primary,
     borderRadius: 3,
-    paddingTop: 2,
-    padding: 4
+    padding: 7
   }
 };
 
@@ -34,7 +35,7 @@ const RepositoryInfo = ({ name, description, language }) => {
       <Text testID="repositoryDescription" style={styles.infoItem} color="textSecondary">
         {description}
       </Text>
-      <Text testID="repositoryLanguage" style={styles.itemLanguage} color="textTertiary">
+      <Text testID="repositoryLanguage" color="textTertiary" style={styles.itemLanguage}>
         {language}
       </Text>
     </View>

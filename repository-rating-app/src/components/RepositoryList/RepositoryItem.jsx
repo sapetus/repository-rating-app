@@ -1,14 +1,19 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Pressable } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
 
 import RepositoryStatistic from './RepositoryStatistic';
 import RepositoryInfo from './RepositoryInfo';
+import Text from '../Text';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
     flexDirection: "column",
-    margin: 10
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: "white"
   },
   topRowContainer: {
     display: "flex",
@@ -24,10 +29,23 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 6
+  },
+  openInButton: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    backgroundColor: theme.colors.primary,
+    borderRadius: 5,
+    padding: 15,
+    marginTop: 10
   }
 });
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, showOpenIn }) => {
+  const onPress = () => {
+    WebBrowser.openBrowserAsync(item.url);
+  };
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topRowContainer}>
@@ -40,6 +58,15 @@ const RepositoryItem = ({ item }) => {
         <RepositoryStatistic value={item.reviewCount} stat="Reviews" />
         <RepositoryStatistic value={item.ratingAverage} stat="Rating" />
       </View>
+      {showOpenIn
+        ?
+        <Pressable onPress={() => onPress()} style={styles.openInButton} >
+          <Text color="textTertiary" fontSize="subheading" fontWeight="bold"  >
+            Open in GitHub
+          </Text>
+        </Pressable>
+        :
+        null}
     </View>
   );
 };

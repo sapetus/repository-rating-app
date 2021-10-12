@@ -7,6 +7,7 @@ const theme = {
     textTertiary: 'white',
     primary: '#0366d6',
     backgroundColor: '#24292e',
+    backgroundColorLight: '#e3e1e1',
     error: '#d73a4a'
   },
   fontSizes: {

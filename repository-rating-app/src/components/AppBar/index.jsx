@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
+import { useHistory } from 'react-router';
 
 import AppBarTab from './AppBarTab';
 import useAuthorizedUser from '../../hooks/useAuthorizedUser';
@@ -21,9 +22,11 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const [signOut] = useSignOut();
   const { authorizedUser } = useAuthorizedUser();
+  const history = useHistory();
 
   const signOutUser = async () => {
     await signOut();
+    history.push('/');
   };
 
   return (

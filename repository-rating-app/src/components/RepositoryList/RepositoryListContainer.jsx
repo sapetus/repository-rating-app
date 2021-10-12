@@ -1,24 +1,16 @@
 import React from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
+import { FlatList, Pressable } from 'react-native';
+import { useHistory } from 'react-router';
 
 import RepositoryItem from './RepositoryItem';
 
-const styles = StyleSheet.create({
-  separator: {
-    height: 10,
-    backgroundColor: "#e1e4e8"
-  }
-});
-
-//these two could go in their separate components
-const ItemSeparator = () => <View style={styles.separator} />;
-const renderItem = ({ item }) => {
-  return (
-    <RepositoryItem testID="repository" item={item} />
-  );
-};
-
 const RepositoryListContainer = ({ repositories }) => {
+  const history = useHistory();
+
+  const redirectTo = (id) => {
+    history.push(`/repository/${id}`);
+  };
+
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : [];
@@ -26,8 +18,11 @@ const RepositoryListContainer = ({ repositories }) => {
   return (
     <FlatList
       data={repositoryNodes}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem={renderItem}
+      renderItem={({ item }) => (
+        <Pressable onPress={() => redirectTo(item.id)}>
+          <RepositoryItem testID="repository" item={item} />
+        </Pressable>
+      )}
     />
   );
 };

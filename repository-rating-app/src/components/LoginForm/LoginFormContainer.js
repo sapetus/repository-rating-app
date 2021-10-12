@@ -1,8 +1,16 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import LoginForm from './LoginForm';
+
+const styles = StyleSheet.create({
+  form: {
+    backgroundColor: "white",
+    paddingBottom: 10
+  }
+});
 
 const initialValues = {
   username: '',
@@ -16,10 +24,12 @@ const validationSchema = yup.object().shape({
 
 const LoginFormContainer = ({ onSubmit }) => {
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-      {({ handleSubmit, dirty, isValid }) =>
-        <LoginForm onSubmit={handleSubmit} dirty={dirty} isValid={isValid} />}
-    </Formik>
+    <View style={styles.form}>
+      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema} >
+        {({ handleSubmit, dirty, isValid }) =>
+          <LoginForm onSubmit={handleSubmit} dirty={dirty} isValid={isValid} />}
+      </Formik>
+    </View>
   );
 };
 

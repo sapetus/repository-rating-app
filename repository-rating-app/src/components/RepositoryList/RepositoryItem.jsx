@@ -45,7 +45,7 @@ const RepositoryItem = ({ item, showOpenIn }) => {
   const onPress = () => {
     WebBrowser.openBrowserAsync(item.url);
   };
-
+  
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topRowContainer}>

@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 
 import { CREATE_REVIEW } from '../graphql/mutations';
-
+ 
 const useCreateReview = () => {
   const [mutation] = useMutation(CREATE_REVIEW);
 
@@ -16,7 +16,7 @@ const useCreateReview = () => {
     });
 
     return {
-      repositoryId: data?.repositoryId
+      repositoryId: data.createReview.repositoryId
     };
   };
 

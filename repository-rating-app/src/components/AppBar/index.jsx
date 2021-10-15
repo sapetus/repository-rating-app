@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import Constants from 'expo-constants';
 import { useHistory } from 'react-router';
 
 import AppBarTab from './AppBarTab';
@@ -10,12 +9,11 @@ import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight,
-    height: 100,
+    height: 70,
     backgroundColor: theme.colors.backgroundColor,
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center"
   }
 });
 
@@ -39,6 +37,9 @@ const AppBar = () => {
         {authorizedUser
           ? <AppBarTab text="Sign Out" onPress={signOutUser} />
           : <AppBarTab text="Sign In" link="/sign-in" />}
+        {authorizedUser
+          ? null
+          : <AppBarTab text="Sign Up" link="/sign-up" />}
       </ScrollView>
     </View>
   );

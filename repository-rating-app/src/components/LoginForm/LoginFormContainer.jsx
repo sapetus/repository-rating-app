@@ -18,8 +18,12 @@ const initialValues = {
 };
 
 const validationSchema = yup.object().shape({
-  username: yup.string().min(3, 'Username must be longer').required('Username is required'),
-  password: yup.string().min(5, 'Password must be longer').required('Password is required')
+  username: yup.string()
+    .min(3, 'Username must be longer').
+    required('Username is required'),
+  password: yup.string().
+    min(5, 'Password must be longer').
+    required('Password is required')
 });
 
 const LoginFormContainer = ({ onSubmit }) => {

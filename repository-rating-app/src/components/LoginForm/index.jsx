@@ -1,8 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 
 import LoginFormContainer from './LoginFormContainer';
 import useSignIn from '../../hooks/useSignIn';
-import { useHistory } from 'react-router';
 
 const SignIn = () => {
   const [signIn] = useSignIn();

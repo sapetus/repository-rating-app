@@ -14,7 +14,7 @@ const Repository = () => {
   if (loading) {
     return null;
   } else {
-    const reviewNodes = repository.reviews.edges.map(edge => edge.node);
+    const reviewNodes = repository?.reviews.edges.map(edge => edge.node);
     
     return (
       <FlatList

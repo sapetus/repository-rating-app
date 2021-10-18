@@ -3,8 +3,24 @@ import { REPOSITORY_DATA } from './fragments';
 
 export const GET_REPOSITORIES = gql`
   ${REPOSITORY_DATA}
+  query getRepositories(
+    $orderBy: AllRepositoriesOrderBy!
+    $orderDirection: OrderDirection!
+  ) {
+    repositories(orderBy: $orderBy, orderDirection: $orderDirection) {
+      edges {
+        node {
+          ...RepositoryData
+        }
+      }
+    }
+  }
+`;
+
+export const GET_REPOSITORIES_LATEST = gql`
+  ${REPOSITORY_DATA}
   query getRepositories {
-    repositories {
+    repositories (orderBy: CREATED_AT) {
       edges {
         node {
           ...RepositoryData

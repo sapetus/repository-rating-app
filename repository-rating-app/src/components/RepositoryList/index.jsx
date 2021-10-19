@@ -2,14 +2,25 @@ import React from 'react';
 
 import RepositoryListContainer from './RepositoryListContainer';
 import useRepositories from '../../hooks/useRepositories';
+import { useHistory } from 'react-router';
 
 const RepositoryList = () => {
-  const { repositories, refetch } = useRepositories({
-    orderBy: "CREATED_AT",
-    orderDirection: "DESC"
+  const history = useHistory();
+
+  const { repositories, refetch, fetchMore } = useRepositories({
+    first: 10
   });
 
-  return <RepositoryListContainer repositories={repositories} refetch={refetch} />;
+  const onEndReach = () => {
+    fetchMore();
+  };
+
+  return <RepositoryListContainer
+    repositories={repositories}
+    refetch={refetch}
+    history={history}
+    onEndReach={onEndReach}
+  />;
 };
 
 export default RepositoryList;

@@ -1,32 +1,43 @@
 import React from 'react';
 import { FlatList, Pressable } from 'react-native';
-import { useHistory } from 'react-router';
 
 import RepositoryItem from './RepositoryItem';
 import Selection from './Selection';
 
-const RepositoryListContainer = ({ repositories, refetch }) => {
-  const history = useHistory();
+class RepositoryListContainer extends React.Component {
+  renderHeader = () => {
+    const props = this.props;
 
-  const redirectTo = (id) => {
-    history.push(`/repository/${id}`);
+    return (
+      <Selection refetch={props.refetch} />
+    );
   };
 
-  const repositoryNodes = repositories
-    ? repositories.edges.map(edge => edge.node)
-    : [];
+  render() {
+    const props = this.props;
 
-  return (
-    <FlatList
-      data={repositoryNodes}
-      renderItem={({ item }) => (
-        <Pressable onPress={() => redirectTo(item.id)}>
-          <RepositoryItem testID="repository" item={item} />
-        </Pressable>
-      )}
-      ListHeaderComponent={<Selection refetch={refetch} />}
-    />
-  );
-};
+    const redirectTo = (id) => {
+      props.history.push(`/repository/${id}`);
+    };
+
+    const repositoryNodes = props.repositories
+      ? props.repositories.edges.map(edge => edge.node)
+      : [];
+
+    return (
+      <FlatList
+        data={repositoryNodes}
+        renderItem={({ item }) => (
+          <Pressable onPress={() => redirectTo(item.id)}>
+            <RepositoryItem testID="repository" item={item} />
+          </Pressable>
+        )}
+        ListHeaderComponent={this.renderHeader}
+        onEndReached={props.onEndReach}
+        onEndReachedThreshold={0.5}
+      />
+    );
+  }
+}
 
 export default RepositoryListContainer;

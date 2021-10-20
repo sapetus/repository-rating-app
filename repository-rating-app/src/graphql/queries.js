@@ -31,34 +31,52 @@ export const GET_REPOSITORIES = gql`
   }
 `;
 
-export const GET_REPOSITORIES_LATEST = gql`
-  ${REPOSITORY_DATA}
-  query getRepositories {
-    repositories (orderBy: CREATED_AT) {
-      edges {
-        node {
-          ...RepositoryData
+export const AUTHORIZED_USER = gql`
+  query authorizedUser(
+    $includeReviews: Boolean = false
+    $after: String
+    $first: Int
+  ) {
+    authorizedUser {
+      id
+      username
+      reviews (after: $after, first: $first) @include(if: $includeReviews) {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            repository {
+              fullName
+            }
+            user {
+              id
+              username
+            }
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
         }
       }
     }
   }
 `;
 
-export const AUTHORIZED_USER = gql`
-  query authorizedUser {
-    authorizedUser {
-      id
-      username
-    }
-  }
-`;
-
 export const GET_REPOSITORY = gql`
   ${REPOSITORY_DATA}
-  query getRepository($id: ID!) {
+  query getRepository(
+    $id: ID!
+    $first: Int
+    $after: String
+  ) {
     repository(id: $id) {
       ...RepositoryData
-      reviews {
+      reviews(first: $first, after: $after) {
         edges {
           node {
             id
@@ -70,6 +88,12 @@ export const GET_REPOSITORY = gql`
               username
             }
           }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
         }
       }
     }

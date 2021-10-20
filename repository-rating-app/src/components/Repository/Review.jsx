@@ -2,8 +2,8 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import * as dateFns from 'date-fns';
 
-import Text from './Text';
-import theme from '../theme';
+import Text from '../Text';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const Review = ({ review }) => {
+const Review = ({ review, myReview }) => {
   const parsedDate = dateFns.addDays(dateFns.parseISO(review.createdAt), 1);
   const createdAt = dateFns.format(parsedDate, 'MM/dd/yyyy');
 
@@ -55,7 +55,11 @@ const Review = ({ review }) => {
       </View>
       <View style={styles.containerRight}>
         <View style={styles.infoContainer}>
-          <Text fontSize="subheading" fontWeight="bold">{review.user.username}</Text>
+          <Text fontSize="subheading" fontWeight="bold">
+            {myReview
+              ? review.repository.fullName
+              : review.user.username}
+          </Text>
           <Text color="textSecondary">{createdAt}</Text>
         </View>
         <Text>{review.text}</Text>

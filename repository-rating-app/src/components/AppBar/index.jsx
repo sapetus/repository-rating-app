@@ -35,6 +35,9 @@ const AppBar = () => {
           ? <AppBarTab text="Create a Review" link="/create-review" />
           : null}
         {authorizedUser
+          ? <AppBarTab text="My reviews" link="/reviews" />
+          : null}
+        {authorizedUser
           ? <AppBarTab text="Sign Out" onPress={signOutUser} />
           : <AppBarTab text="Sign In" link="/sign-in" />}
         {authorizedUser

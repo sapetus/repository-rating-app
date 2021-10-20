@@ -49,14 +49,14 @@ const RepositoryItem = ({ item, showOpenIn }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topRowContainer}>
-        <Image style={styles.itemAvatar} source={{ uri: item.ownerAvatarUrl }} />
-        <RepositoryInfo name={item.fullName} description={item.description} language={item.language} />
+        <Image style={styles.itemAvatar} source={{ uri: item?.ownerAvatarUrl }} />
+        <RepositoryInfo name={item?.fullName} description={item?.description} language={item?.language} />
       </View>
       <View style={styles.bottomRowContainer}>
-        <RepositoryStatistic value={item.stargazersCount} stat="Stars" />
-        <RepositoryStatistic value={item.forksCount} stat="Forks" />
-        <RepositoryStatistic value={item.reviewCount} stat="Reviews" />
-        <RepositoryStatistic value={item.ratingAverage} stat="Rating" />
+        <RepositoryStatistic value={item?.stargazersCount} stat="Stars" />
+        <RepositoryStatistic value={item?.forksCount} stat="Forks" />
+        <RepositoryStatistic value={item?.reviewCount} stat="Reviews" />
+        <RepositoryStatistic value={item?.ratingAverage} stat="Rating" />
       </View>
       {showOpenIn
         ?

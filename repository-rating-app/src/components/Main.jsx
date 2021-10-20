@@ -3,11 +3,12 @@ import { View, StyleSheet, StatusBar } from 'react-native';
 import { Route, Switch, Redirect } from 'react-router-native';
 
 import RepositoryList from './RepositoryList/index';
-import Repository from './Repository';
+import Repository from './Repository/index';
 import AppBar from './AppBar/index';
 import SignIn from './LoginForm/index';
 import ReviewForm from './ReviewForm/index';
 import SignUpForm from './SignUpForm';
+import Reviews from './Reviews';
 import theme from '../theme';
 
 const styles = StyleSheet.create({
@@ -22,9 +23,12 @@ const styles = StyleSheet.create({
 const Main = () => {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={theme.colors.backgroundColor}/>
+      <StatusBar backgroundColor={theme.colors.backgroundColor} />
       <AppBar />
       <Switch>
+        <Route path="/reviews" exact>
+          <Reviews />
+        </Route>
         <Route path="/create-review" exact>
           <ReviewForm />
         </Route>

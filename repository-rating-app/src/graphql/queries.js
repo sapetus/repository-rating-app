@@ -49,6 +49,7 @@ export const AUTHORIZED_USER = gql`
             createdAt
             repository {
               fullName
+              id
             }
             user {
               id

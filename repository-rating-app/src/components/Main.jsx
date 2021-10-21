@@ -26,7 +26,7 @@ const Main = () => {
       <StatusBar backgroundColor={theme.colors.backgroundColor} />
       <AppBar />
       <Switch>
-        <Route path="/reviews" exact>
+        <Route path="/user-reviews" exact>
           <Reviews />
         </Route>
         <Route path="/create-review" exact>

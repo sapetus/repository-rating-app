@@ -5,7 +5,7 @@ import Review from './Repository/Review';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
 const Reviews = () => {
-  const { authorizedUser, fetchMore } = useAuthorizedUser({
+  const { authorizedUser, refetch, fetchMore } = useAuthorizedUser({
     includeReviews: true,
     first: 10
   });
@@ -20,7 +20,9 @@ const Reviews = () => {
 
   return <FlatList
     data={reviewNodes}
-    renderItem={({ item }) => <Review review={item} myReview={true} />}
+    renderItem={({ item }) =>
+      <Review review={item} userReview={true} refetch={refetch} />
+    }
     keyExtractor={({ id }) => id}
     onEndReached={onEndReach}
     onEndReachedThreshold={0.5}
